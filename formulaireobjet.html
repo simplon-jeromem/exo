@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Batard de merden</title>
+</head>
+<body>
+
+  <form id="formulaire">
+
+    <input id="champNom">
+    </input>
+    <label for="champNom">Nom
+    </label>
+
+    <input id="champPrenom">
+    </input>
+    <label for="champPrenom">Prenom
+    </label>
+
+    <button type="button" onclick="recup()">Submit</button>
+
+
+  </form>
+
+    <ul id="maListe">
+    </ul>
+
+
+  <script>
+  var liste = document.getElementById('maListe');
+  var li;
+  var nouvellediv;
+  var compteur = 0;
+  var tabContact = [];
+
+function supr(a, b){
+  var idLi = document.getElementById("li"+a);
+  // console.log("li"+a);
+  idLi.parentNode.removeChild(idLi);
+  b.parentNode.removeChild(b);
+  // console.log(liste);
+  tabContact.splice(a,1);
+  // console.log("a : " + a );
+  console.log(tabContact);
+}
+
+ function recup(){
+   var prenom = document.getElementById('champPrenom');
+   var nom = document.getElementById("champNom");
+   var monObjet = {};
+
+   li = document.createElement('li');
+   liste.appendChild(li);
+   li.id = "li"+compteur;
+  //  console.log("compteur : "+compteur + "id li : "+ li.id);
+   nouvellediv = document.createElement('div');
+   nouvellediv.innerHTML="<button type='button'onclick='supr("+compteur+", this)'>suprimmer</button>";
+   liste.appendChild(nouvellediv);
+   compteur ++;
+   monObjet.nom = nom.value;
+   monObjet.prenom = prenom.value;
+   tabContact.push(monObjet);
+   console.log(tabContact);
+   li.textContent = monObjet.nom + ' ' + monObjet.prenom;
+ }
+
+  </script>
+</body>
+</html>
